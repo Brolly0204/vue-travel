@@ -95,6 +95,7 @@ export default {
 @import '~styles/mixins.styl'
 
 .icons
+  margin-top 10px
   /deep/ .swiper-container
     width 100%
     height 0
