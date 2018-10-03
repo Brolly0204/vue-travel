@@ -1,9 +1,19 @@
 <template>
   <div class="city">
-    <city-header></city-header>
-    <city-search></city-search>
-    <city-list :cities="cities" :hot-cities="hotCities"></city-list>
-    <city-alphabet :cities="cities"></city-alphabet>
+    <div ref="header">
+      <city-header></city-header>
+      <city-search></city-search>
+    </div>
+    <city-list
+      :cities="cities"
+      :hot-cities="hotCities"
+      :letter="letter"
+    ></city-list>
+    <city-alphabet
+      :cities="cities"
+      @change="handleLetterChange"
+      :headerHeight="headerHeight"
+    ></city-alphabet>
   </div>
 </template>
 
@@ -17,7 +27,9 @@ export default {
   data() {
     return {
       cities: {},
-      hotCities: []
+      hotCities: [],
+      letter: '',
+      headerHeight: 0
     }
   },
   methods: {
@@ -34,10 +46,15 @@ export default {
         this.cities = cities
         this.hotCities = hotCities
       }
+    },
+    handleLetterChange(letter) {
+      this.letter = letter
     }
   },
   mounted() {
     this.getCityList()
+    // 获取header search 高度
+    this.headerHeight = this.$refs.header.offsetHeight
   },
   components: {
     CityHeader,
