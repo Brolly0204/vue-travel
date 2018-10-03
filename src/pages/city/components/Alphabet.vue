@@ -1,6 +1,10 @@
 <template>
   <div class="alphabet">
-    <div class="item" v-for="item of list" :key="item">{{item}}</div>
+    <div
+      class="item"
+      v-for="letter of letterList"
+      :key="letter"
+    >{{letter}}</div>
   </div>
 </template>
 
@@ -11,7 +15,7 @@ export default {
     cities: Object
   },
   computed: {
-    list() {
+    letterList() {
       return Object.keys(this.cities)
     }
   }
