@@ -26,24 +26,29 @@ export default {
       locationIcon: require('./images/location.png')
     }
   },
+  methods: {
+    getHomeData() {
+      this.$api.getHomeData().then(res => {
+        let result = res.data
+        if (result.ret && result.data) {
+          let {
+            city,
+            swiperList,
+            iconList,
+            recommendList,
+            weekendList
+          } = result.data
+          this.city = city
+          this.swiperList = swiperList
+          this.iconList = iconList
+          this.recommendList = recommendList
+          this.weekendList = weekendList
+        }
+      })
+    }
+  },
   mounted() {
-    this.$api.getHomeData().then(res => {
-      let result = res.data
-      if (result.ret && result.data) {
-        let {
-          city,
-          swiperList,
-          iconList,
-          recommendList,
-          weekendList
-        } = result.data
-        this.city = city
-        this.swiperList = swiperList
-        this.iconList = iconList
-        this.recommendList = recommendList
-        this.weekendList = weekendList
-      }
-    })
+    this.getHomeData()
   },
   components: {
     HomeHeader,
