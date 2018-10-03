@@ -8,7 +8,7 @@
         :key="item.id"
       >
         <div class="item-img-wrapper">
-          <img class="item-img" :src="item.imgSrc" :alt="item.title">
+          <img class="item-img" :src="item.imgUrl" :alt="item.title">
         </div>
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
@@ -22,41 +22,8 @@
 <script>
 export default {
   name: 'HomeWeekend',
-  data() {
-    return {
-      weekendList: [
-        {
-          id: '01',
-          imgSrc: 'http://img1.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg',
-          title: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋主题乐园'
-        },
-        {
-          id: '02',
-          imgSrc: 'http://img1.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg',
-          title: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋主题乐园'
-        },
-        {
-          id: '03',
-          imgSrc: 'http://img1.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg',
-          title: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋主题乐园'
-        },
-        {
-          id: '04',
-          imgSrc: 'http://img1.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg',
-          title: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋主题乐园'
-        },
-        {
-          id: '05',
-          imgSrc: 'http://img1.qunarzz.com/sight/source/1505/9e/21df651e19af5d.jpg_r_640x214_3ea5bb38.jpg',
-          title: '大连圣亚海洋世界',
-          desc: '浪漫大连首站，浪漫的海洋主题乐园'
-        }
-      ]
-    }
+  props: {
+    weekendList: Array
   }
 }
 </script>
@@ -65,7 +32,6 @@ export default {
   @import "~styles/mixins.styl"
   .weekend
     &-title
-      margin-top 20px
       line-height 80px
       text-indent 20px
       background #eee

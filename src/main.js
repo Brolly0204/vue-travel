@@ -7,9 +7,11 @@ import 'styles/reset.css'
 import 'styles/border.css'
 import 'styles/iconfont.css'
 import 'swiper/dist/css/swiper.css'
+import apis from '@/api'
 
 // import { Row, Col } from 'vant'
 Vue.use(VueAwesomeSwiper)
+Vue.use(apis)
 
 // Vue.use(Row).use(Col)
 Vue.config.productionTip = false

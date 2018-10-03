@@ -6,7 +6,7 @@
           <div class="icon-img">
             <img
               class="icon-img-content"
-              :src="item.imgSrc" :alt="item.desc">
+              :src="item.imgUrl" :alt="item.desc">
           </div>
           <p class="icon-desc">{{item.desc}}</p>
         </div>
@@ -17,62 +17,11 @@
 
 <script>
 export default {
-  data() {
-    return {
-      swiperOption: {},
-      iconList: [
-        {
-          id: '01',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          desc: '景点门票'
-        },
-        {
-          id: '02',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-          desc: '自然风光'
-        },
-        {
-          id: '03',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          desc: '景点门票'
-        },
-        {
-          id: '04',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-          desc: '自然风光'
-        },
-        {
-          id: '05',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          desc: '景点门票'
-        },
-        {
-          id: '06',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-          desc: '自然风光'
-        },
-        {
-          id: '07',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          desc: '景点门票'
-        },
-        {
-          id: '08',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-          desc: '自然风光'
-        },
-        {
-          id: '09',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/95/f3dd6c383aeb3b02.png',
-          desc: '景点门票'
-        },
-        {
-          id: '10',
-          imgSrc: 'http://img1.qunarzz.com/piao/fusion/1803/96/c70f1e85ae4a4f02.png',
-          desc: '自然风光'
-        }
-      ]
-    }
+  props: {
+    iconList: Array
+  },
+  created() {
+    this.swiperOption = {}
   },
   computed: {
     pages() {
@@ -122,6 +71,7 @@ export default {
         display block
         height 100%
         margin 0 auto
+        overflow hidden
 
     .icon-desc
       width 100%

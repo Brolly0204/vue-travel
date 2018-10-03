@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <home-header></home-header>
-    <home-swiper></home-swiper>
-    <home-icons></home-icons>
-    <home-recommend></home-recommend>
-    <home-weekend></home-weekend>
+    <home-header :city="city"></home-header>
+    <home-swiper :swiper-list="swiperList"></home-swiper>
+    <home-icons :icon-list="iconList"></home-icons>
+    <home-recommend :recommend-list="recommendList"></home-recommend>
+    <home-weekend :weekend-list="weekendList"></home-weekend>
   </div>
 </template>
 
@@ -18,9 +18,32 @@ import HomeWeekend from './components/Weekend'
 export default {
   data() {
     return {
-      msg: 'shopping mall',
+      swiperList: [],
+      iconList: [],
+      recommendList: [],
+      weekendList: [],
+      city: '城市',
       locationIcon: require('./images/location.png')
     }
+  },
+  mounted() {
+    this.$api.getHomeData().then(res => {
+      let result = res.data
+      if (result.ret && result.data) {
+        let {
+          city,
+          swiperList,
+          iconList,
+          recommendList,
+          weekendList
+        } = result.data
+        this.city = city
+        this.swiperList = swiperList
+        this.iconList = iconList
+        this.recommendList = recommendList
+        this.weekendList = weekendList
+      }
+    })
   },
   components: {
     HomeHeader,
