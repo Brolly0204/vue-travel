@@ -1,5 +1,5 @@
 <template>
-  <div class="container" @click="handleGalleryClick">
+  <div class="container" @click="handleGalleryClick" ref="container">
     <div class="wrapper">
       <swiper :options="swiperOptions">
         <swiper-slide v-for="(item, index) in imgs" :key="index">
@@ -37,6 +37,12 @@ export default {
     handleGalleryClick() {
       this.$emit('close')
     }
+  },
+  mounted() {
+    let container = this.$refs.container
+    container.addEventListener('touchmove', e => {
+      e.preventDefault()
+    })
   },
   components: {
     swiper,
