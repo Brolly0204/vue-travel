@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <home-header :city="city"></home-header>
+    <home-header></home-header>
     <home-swiper :swiper-list="swiperList"></home-swiper>
     <home-icons :icon-list="iconList"></home-icons>
     <home-recommend :recommend-list="recommendList"></home-recommend>
@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
@@ -22,11 +23,11 @@ export default {
       iconList: [],
       recommendList: [],
       weekendList: [],
-      city: '城市',
       locationIcon: require('./images/location.png')
     }
   },
   methods: {
+    ...mapActions(['changeCity']),
     getHomeData() {
       this.$api.getHomeData().then(res => {
         let result = res.data
@@ -38,7 +39,12 @@ export default {
             recommendList,
             weekendList
           } = result.data
-          this.city = city
+          try {
+            if (localStorage.city) {
+              city = localStorage.city
+            }
+          } catch (e) {}
+          this.changeCity(city)
           this.swiperList = swiperList
           this.iconList = iconList
           this.recommendList = recommendList
