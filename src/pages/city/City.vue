@@ -2,7 +2,7 @@
   <div class="city">
     <div ref="header">
       <city-header></city-header>
-      <city-search></city-search>
+      <city-search :cities="cities"></city-search>
     </div>
     <city-list
       :cities="cities"
