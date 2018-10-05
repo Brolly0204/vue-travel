@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import HomeHeader from './components/Header'
 import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
@@ -19,6 +19,7 @@ import HomeWeekend from './components/Weekend'
 export default {
   data() {
     return {
+      lastCity: '',
       swiperList: [],
       iconList: [],
       recommendList: [],
@@ -26,10 +27,13 @@ export default {
       locationIcon: require('./images/location.png')
     }
   },
+  computed: {
+    ...mapState(['city'])
+  },
   methods: {
     ...mapActions(['changeCity']),
     getHomeData() {
-      this.$api.getHomeData().then(res => {
+      this.$api.getHomeData({city: this.city}).then(res => {
         let result = res.data
         if (result.ret && result.data) {
           let {
@@ -54,7 +58,14 @@ export default {
     }
   },
   mounted() {
+    this.lastCity = this.city
     this.getHomeData()
+  },
+  activated() {
+    if (this.lastCity !== this.city) {
+      this.lastCity = this.city
+      this.getHomeData()
+    }
   },
   components: {
     HomeHeader,

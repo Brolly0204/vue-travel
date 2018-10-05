@@ -1,5 +1,5 @@
 import { get } from './config'
 
-export const getCityList = () => {
-  return get('/api/city.json')
+export const getCityList = (params) => {
+  return get('/api/city.json', params)
 }
