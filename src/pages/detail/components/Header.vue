@@ -27,14 +27,12 @@ export default {
       }
     }
   },
-  activated() {
-    window.addEventListener('scroll', this.handleScroll)
-  },
   methods: {
     handleBackClick() {
       this.$router.push('/')
     },
     handleScroll() {
+      console.log('scroll')
       let scrollTop = document.documentElement.scrollTop
       if (scrollTop > 40) {
         let opacity = scrollTop / 140
@@ -45,6 +43,12 @@ export default {
         this.showAbs = false
       }
     }
+  },
+  activated() {
+    window.addEventListener('scroll', this.handleScroll)
+  },
+  deactivated() {
+    window.removeEventListener('scroll', this.handleScroll)
   }
 }
 </script>
