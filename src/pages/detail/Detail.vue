@@ -1,9 +1,13 @@
 <template>
   <div>
-    <detail-banner></detail-banner>
+    <detail-banner
+      :sightName="sightName"
+      :bannerImg="bannerImg"
+      :gellaryImgs="gellaryImgs"
+    ></detail-banner>
     <detail-header></detail-header>
     <div class="content">
-      <detail-list :list="list"></detail-list>
+      <detail-list :list="categoryList"></detail-list>
     </div>
   </div>
 </template>
@@ -16,45 +20,34 @@ export default {
   name: 'Detail',
   data() {
     return {
-      list: [
-        {
-          title: '成人票',
-          children: [
-            {
-              title: '成人三馆联票',
-              children: [
-                {
-                  title: '成人三馆联票'
-                },
-                {
-                  title: '成人三馆联票'
-                }
-              ]
-            },
-            {
-              title: '成人三馆联票',
-              children: [
-                {
-                  title: '成人三馆联票'
-                },
-                {
-                  title: '成人三馆联票'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          title: '学生票'
-        },
-        {
-          title: '儿童票'
-        },
-        {
-          title: '特惠票'
-        }
-      ]
+      sightName: '',
+      bannerImg: '',
+      categoryList: [],
+      gellaryImgs: []
     }
+  },
+  methods: {
+    getDetailInfo() {
+      this.$api.getDetailInfo({id: this.$route.params.id}).then(this.handleResData)
+    },
+    handleResData(res) {
+      let result = res.data
+      if (result.ret && result.data) {
+        let {
+          sightName,
+          bannerImg,
+          categoryList,
+          gellaryImgs
+        } = result.data
+        this.sightName = sightName
+        this.bannerImg = bannerImg
+        this.categoryList = categoryList
+        this.gellaryImgs = gellaryImgs
+      }
+    }
+  },
+  mounted() {
+    this.getDetailInfo()
   },
   components: {
     DetailBanner,

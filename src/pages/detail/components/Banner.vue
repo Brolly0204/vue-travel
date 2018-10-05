@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="banner" @click="handleBannerClick">
-      <img class="banner-img" src="//img1.qunarzz.com/sight/p0/1710/7f/7f06f56b02987c66a3.img.jpg_600x330_029cf445.jpg" alt="">
+      <img class="banner-img" :src="bannerImg" alt="">
       <div class="banner-info">
-        <div class="title">库木塔格沙漠景区</div>
-        <div class="number"><span class="iconfont icon">&#xe616;</span> 39</div>
+        <div class="title">{{sightName}}</div>
+        <div class="number"><span class="iconfont icon">&#xe616;</span>{{gellaryImgs.length}}</div>
       </div>
     </div>
     <common-gallery
-      :imgs="imgs"
+      :imgs="gellaryImgs"
       v-show="showGallery"
       @close="handleGalleryClose"
     ></common-gallery>
@@ -19,14 +19,14 @@
 import CommonGallery from '@/common/gallery/Gallery'
 export default {
   name: 'DetailBanner',
+  props: {
+    sightName: String,
+    bannerImg: String,
+    gellaryImgs: Array
+  },
   data() {
     return {
-      showGallery: false,
-      imgs: [
-        'http://img1.qunarzz.com/sight/p0/1605/9d/9d61e856bb6ce93490.img.jpg_r_800x800_4d489cb3.jpg',
-        'http://img1.qunarzz.com/sight/p0/1605/9d/9d61e856bb6ce93490.img.jpg_r_800x800_4d489cb3.jpg',
-        'http://img1.qunarzz.com/sight/p0/1605/9d/9d61e856bb6ce93490.img.jpg_r_800x800_4d489cb3.jpg'
-      ]
+      showGallery: false
     }
   },
   methods: {
@@ -77,4 +77,5 @@ export default {
         background rgba(0, 0, 0, .8)
         .icon
           font-size 17px
+          margin-right 10px
 </style>
