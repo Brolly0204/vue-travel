@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="header-abs" @click="handleBackClick">
+    <div class="header-abs" @click.stop="handleBackClick">
       <span class="iconfont icon">&#xe624;</span>
     </div>
     <div

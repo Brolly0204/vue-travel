@@ -56,7 +56,7 @@ export default {
     bottom 0
     top 0
     background #000
-    z-index 1
+    z-index 10
     .wrapper
       width 100%
       /deep/ .swiper-container
