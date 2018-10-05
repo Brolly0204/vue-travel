@@ -32,7 +32,6 @@ export default {
       this.$router.push('/')
     },
     handleScroll() {
-      console.log('scroll')
       let scrollTop = document.documentElement.scrollTop
       if (scrollTop > 40) {
         let opacity = scrollTop / 140
